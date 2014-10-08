@@ -1,4 +1,5 @@
 require 'aruba/cucumber'
+require_relative '../../circular_dep_app/application'
 require_relative 'cucumber_helper.rb'
 
 Aruba.configure do |config|

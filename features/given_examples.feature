@@ -4,7 +4,6 @@ Feature: Given example
   I want to check whether the theoretical system is in dead lock
   so that I can correct the model
 
-  @wip
   Scenario: First example
     Given the following processes and resources
       | Process | Resource | Interaction |

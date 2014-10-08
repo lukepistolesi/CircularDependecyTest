@@ -4,7 +4,7 @@ class IntegrationHelper
 
   def self.create_graph_file(arches)
     file = Tempfile.new 'graph.txt'
-    items.each { |arch| file.write "#{arch[:process]}, #{arch[:resource]}, #{arch[:type]}\n" }
+    arches.each { |arch| file.write "#{arch[:process]}, #{arch[:resource]}, #{arch[:type]}\n" }
     file.close
     file
   end

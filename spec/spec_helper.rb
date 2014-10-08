@@ -93,14 +93,4 @@ RSpec.configure do |config|
     # a real object. This is generally recommended.
     mocks.verify_partial_doubles = true
   end
-
-  config.before :each, :integration do
-    keywords = { food: '', books: '', medical: '', imported: '' }
-    IntegrationHelper.set_classification_keywords keywords
-  end
-
-  config.after :each, :integration do
-    keywords = { food: '', books: '', medical: '', imported: '' }
-    IntegrationHelper.set_classification_keywords keywords
-  end
 end

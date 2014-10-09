@@ -41,6 +41,7 @@ module CircularDepApp::GraphAnalysis
           @markers[inbound] = id
           node_chain = crawl_inbounds inbound, id
           return node_chain << inbound if node_chain
+          @markers[inbound] = nil
         end
         nil
       end

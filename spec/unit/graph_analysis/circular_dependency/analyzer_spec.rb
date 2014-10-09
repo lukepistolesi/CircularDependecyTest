@@ -127,6 +127,7 @@ module CircularDepApp::GraphAnalysis::CircularDependency
 
       it 'adds a marker for the new not marked inbound node' do
         allow(analyzer).to receive(:crawl_inbounds).with inbound_node, crawl_id
+        allow(markers).to receive(:[]=).with inbound_node, nil
         expect(markers).to receive(:[]=).with inbound_node, crawl_id
         subject
       end
@@ -139,6 +140,13 @@ module CircularDepApp::GraphAnalysis::CircularDependency
       it 'returns the node chain if the inbound crawling returns one' do
         allow(analyzer).to receive(:crawl_inbounds).with(inbound_node, crawl_id).and_return ['My Chain']
         expect(subject).to eql ['My Chain', inbound_node]
+      end
+
+      it 'clears the marker for the current node when no chain detected' do
+        allow(analyzer).to receive(:crawl_inbounds).with(inbound_node, crawl_id).and_return nil
+        allow(markers).to receive(:[]=).with inbound_node, crawl_id
+        expect(markers).to receive(:[]=).with inbound_node, nil
+        subject
       end
 
       it 'returns nothing if no chain found' do

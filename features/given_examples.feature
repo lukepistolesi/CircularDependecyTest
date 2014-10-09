@@ -13,3 +13,22 @@ Feature: Given example
       | Two     | B        | Holds       |
     When I run the app
     Then the output should be BAD
+
+  Scenario: Waiting on same resource
+    Given the following processes and resources
+      | Process | Resource | Interaction |
+      | One     | A        | Waits       |
+      | One     | B        | Holds       |
+      | Two     | A        | Waits       |
+    When I run the app
+    Then the output should be GOOD
+
+  Scenario: Waiting on multiple resource
+    Given the following processes and resources
+      | Process | Resource | Interaction |
+      | One     | A        | Waits       |
+      | One     | B        | Waits       |
+      | Two     | A        | Holds       |
+      | Two     | B        | Waits       |
+    When I run the app
+    Then the output should be GOOD
